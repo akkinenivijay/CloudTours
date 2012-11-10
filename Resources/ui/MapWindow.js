@@ -12,7 +12,7 @@ function MapWindow() {
 		regionFit : true,
 		userLocation : true
 	});
-	win.add(mapview);
+	//win.add(mapview);
 	return win;
 }
 

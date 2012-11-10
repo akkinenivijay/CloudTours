@@ -4,6 +4,9 @@ Titanium.UI.setBackgroundColor('#000');
 var LoginWindow = require('ui/LoginWindow');
 var MapWindow = require('ui/MapWindow');
 var LogoutWindow = require('ui/LogoutWindow');
+var ScrollableView = require('ui/ScrollableView');
+var CoverFlowWindow = require('ui/CoverFlowWindow');
+var ViewFlowWindow = require('ui/ViewFlowWindow');
 
 var _tabGroup = Titanium.UI.createTabGroup();
 
@@ -20,13 +23,16 @@ var tab2 = Titanium.UI.createTab({
 	window : win2
 });
 
-
 var logoutWindow = new LogoutWindow();
+
+var scrollWindow = new ScrollableView();
+
+var viewFlowWindow = new ViewFlowWindow();
 
 var tab3 = Titanium.UI.createTab({
 	icon : 'KS_nav_ui.png',
 	title : 'Settings',
-	window : logoutWindow
+	window : viewFlowWindow
 });
 
 _tabGroup.addTab(tab1);

@@ -2,10 +2,71 @@ function UserDetailsWindow(_args) {
 
 	var _ = require('underscore')._;
 
+	var flipButton = Titanium.UI.createButton({
+		top : 44,
+		left : 280,
+		image : 'icons/flip_icon.png',
+		zIndex : 100
+	});
+
 	var win1 = Titanium.UI.createWindow({
-		title : 'Tab 1',
+		title : 'Tour Search',
 		backgroundColor : '#fff'
 	});
+
+	var search = Titanium.UI.createSearchBar({
+		barColor : '#000',
+		showCancel : true,
+		height : 43,
+		top : 0
+	});
+
+	win1.add(search);
+	win1.add(flipButton);
+
+	var mapview = Titanium.Map.createView({
+		top : 44,
+		mapType : Titanium.Map.STANDARD_TYPE,
+		region : {
+			latitude : 33.778463,
+			longitude : -84.398881,
+			latitudeDelta : 0.2,
+			longitudeDelta : 0.2
+		},
+		animate : true,
+		regionFit : true,
+		userLocation : true
+	});
+
+	win1.add(mapview);
+
+	search.addEventListener('change', function(e) {
+		Titanium.API.info('search bar: you type ' + e.value + ' act val ' + search.value);
+
+	});
+
+	search.addEventListener('cancel', function(e) {
+		Titanium.API.info('search bar cancel fired');
+		search.blur();
+	});
+
+	search.addEventListener('return', function(e) {
+		Titanium.UI.createAlertDialog({
+			title : 'Search Bar',
+			message : 'You typed ' + e.value
+		}).show();
+		search.blur();
+	});
+
+	search.addEventListener('focus', function(e) {
+		Titanium.API.info('search bar: focus received');
+	});
+
+	search.addEventListener('blur', function(e) {
+		Titanium.API.info('search bar:blur received');
+	});
+
+	search.value = 'GA Tech';
 
 	var test = _.clone(_args.user);
 
@@ -70,4 +131,4 @@ function UserDetailsWindow(_args) {
 
 }
 
-module.exports = UserDetailsWindow; 
+module.exports = UserDetailsWindow;
