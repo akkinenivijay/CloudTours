@@ -1,8 +1,8 @@
-#appname: CloudTours
-#publisher: Vijay
-#url: http://cloudtours.com
-#image: appicon.png
-#appid: com.atl.startup.cloudtours
-#desc: undefined
-#type: mobile
-#guid: 101d8731-7e16-4ac6-ad01-2cf3d1eba27b
+#appname:CloudTours
+#publisher:Vijay
+#url:http://cloudtours.com
+#image:appicon.png
+#appid:com.atl.startup.cloudtours
+#desc:not specified
+#type:mobile
+#guid:101d8731-7e16-4ac6-ad01-2cf3d1eba27b

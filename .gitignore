@@ -1,8 +1,2 @@
 tmp
-*.class
-*.pyc
-*.pyo
 build
-build/*
-.fastdev.lock
-build.log
