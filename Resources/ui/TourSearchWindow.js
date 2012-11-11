@@ -192,7 +192,7 @@ function TourSearchWindow(_args) {
 			subtitle : 'Atlanta, GA',
 			pincolor : Titanium.Map.ANNOTATION_GREEN,
 			animate : true,
-			myid : 1 // CUSTOM ATTRIBUTE THAT IS PASSED INTO EVENT OBJECTS
+			myid : 1
 		});
 
 		gaTechAnnotation.addEventListener('click', function(e) {
@@ -207,7 +207,7 @@ function TourSearchWindow(_args) {
 		mapview.addAnnotation(gaTechAnnotation);
 	}
 
-	search.value = 'GA Tech';
+	search.value = 'Little Five Points';
 
 	_args.tabGroup.getTabs()[0].window = win1;
 
