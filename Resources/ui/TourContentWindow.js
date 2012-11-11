@@ -94,9 +94,18 @@ function TourContentWindow(userDetails) {
 		top : 310
 	});
 
-
 	win.add(userName);
 	win.add(userLocation);
+
+	win.addEventListener('swipe', function() {
+		var TourStop = require('ui/Stop');
+		var stopWindow = new TourStop(nav);
+		nav.add(stopWindow);
+		//nav.close(win,{animate:true});
+		nav.open(stopWindow, {
+			animate : true
+		});
+	});
 
 	root = Titanium.UI.createWindow();
 	root.add(nav);

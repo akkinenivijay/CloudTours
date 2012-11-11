@@ -185,7 +185,7 @@ function TourSearchWindow(_args) {
 
 		var gaTechAnnotation = Titanium.Map.createAnnotation({
 			image : 'icons/map_pin.png',
-			leftButton : 'images/gatech.jpg',
+			leftButton : 'images/gatech1.jpg',
 			latitude : 33.778463,
 			longitude : -84.408881,
 			title : "Georgia Tech Tour",
