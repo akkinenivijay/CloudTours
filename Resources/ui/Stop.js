@@ -39,35 +39,12 @@ function TourStop(navigationController) {
 		url : '/video/movie.mp4',
 		backgroundColor : '#111',
 		mediaControlStyle : Titanium.Media.VIDEO_CONTROL_EMBEDDED, // See TIMOB-2802, which may change this property name
-		scalingMode : Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		width : 100,
 		height : 80,
 		zIndex : 100,
 		left : 180,
 		top : 20,
 		autoplay : false
-	});
-
-	activeMovie.addEventListener('load', function() {
-		var t = Titanium.UI.create2DMatrix();
-		t = t.scale(3);
-	});
-
-	activeMovie.addEventListener('complete', function() {
-		Ti.API.debug('Completed!');
-		var dlg = Titanium.UI.createAlertDialog({
-			title : 'Movie',
-			message : 'Completed!'
-		});
-		if (Ti.Platform.name === "android") {
-			// Gives a chance to see the dialog
-			win.close();
-			dlg.show();
-		} else {
-			activeMovie.setFullscreen(false);
-			activeMovie.stop();
-			dlg.show();
-		}
 	});
 
 	view.add(activeMovie);
@@ -128,6 +105,10 @@ function TourStop(navigationController) {
 
 	win.addEventListener('swipe', function() {
 		activeMovie.stop();
+		sound.stop();
+		if (Ti.Platform.osname === 'android') {
+			sound.release();
+		}
 		var TourStop = require('ui/Stop');
 		var stopWindow = new TourStop(navigationController);
 		navigationController.add(stopWindow, {
