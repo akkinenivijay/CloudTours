@@ -1,8 +1,7 @@
 function TourStop(navigationController) {
 
 	var backButton = Titanium.UI.createButton({
-		title : 'Back',
-		style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED
+		title : 'Overview'
 	});
 
 	var win = Ti.UI.createWindow({
@@ -16,80 +15,75 @@ function TourStop(navigationController) {
 	});
 
 	var startStopButton = Titanium.UI.createButton({
-		title : 'Start/Stop Streaming',
+		image : 'icons/button_play_red.png',
 		top : 10,
-		width : 200,
-		height : 40
+		left : 40,
+		zIndex : 100,
+		backgroundImage : 'none',
+		backgroundColor : 'transparent',
+		borderColor : 'transparent'
 	});
 
 	var pauseResumeButton = Titanium.UI.createButton({
-		title : 'Pause/Resume Streaming',
-		top : 40,
-		width : 200,
-		height : 40,
-		enabled : false
+		image : 'icons/button_pause_red.png',
+		top : 10,
+		left : 90,
+		enabled : false,
+		zIndex : 100,
+		backgroundImage : 'none',
+		backgroundColor : 'transparent',
+		borderColor : 'transparent'
 	});
 
-	//view.add(startStopButton);
-	//view.add(pauseResumeButton);
-
-	var audioPlayer = Ti.Media.createAudioPlayer({
-		url : 'audio/stop1.mp3',
-		allowBackground : true
-	});
+	var sound = Titanium.Media.createSound();
+	sound.url = '/audio/stop1.mp3';
 
 	startStopButton.addEventListener('click', function() {
-		// When paused, playing returns false.
-		// If both are false, playback is stopped.
-		if (audioPlayer.playing || audioPlayer.paused) {
-			audioPlayer.stop();
+
+		if (sound.playing || sound.paused) {
+			sound.stop();
+			startStopButton.setImage('icons/button_play_red.png');
 			pauseResumeButton.enabled = false;
 			if (Ti.Platform.name === 'android') {
-				audioPlayer.release();
+				sound.release();
 			}
 		} else {
-			audioPlayer.start();
+			startStopButton.setImage('icons/button_stop_red.png');
+			sound.play();
+			Ti.API.info("audio playing");
 			pauseResumeButton.enabled = true;
 		}
 	});
 
 	pauseResumeButton.addEventListener('click', function() {
-		if (audioPlayer.paused) {
-			audioPlayer.start();
+		if (sound.paused) {
+			sound.play();
 		} else {
-			audioPlayer.pause();
+			sound.pause();
 		}
 	});
 
-	audioPlayer.addEventListener('progress', function(e) {
+	sound.addEventListener('progress', function(e) {
 		Ti.API.info('Time Played: ' + Math.round(e.progress) + ' milliseconds');
 	});
 
-	audioPlayer.addEventListener('change', function(e) {
+	sound.addEventListener('change', function(e) {
 		Ti.API.info('State: ' + e.description + ' (' + e.state + ')');
 	});
 
 	backButton.addEventListener('click', function() {
-		audioPlayer.stop();
+		sound.stop();
 		if (Ti.Platform.osname === 'android') {
-			audioPlayer.release();
+			sound.release();
 		}
 		navigationController.close(win);
 	});
 
-	/*
-	 var coverFlowView = Titanium.UI.iOS.createCoverFlowView({
-	 backgroundColor : '#000',
-	 images : ['coverflow/stop1/IMG_1910.jpg', 'coverflow/stop1/IMG_1913.jpg', 'coverflow/stop1/IMG_1914.jpg', 'coverflow/stop1/IMG_1915.jpg'],
-	 selected : 3,
-	 height : 240,
-	 width : 240
-	 });
-	 */
-	
 	var CoverFlow = require('ui/CoverFlow');
 	var coverFlowView = new CoverFlow();
-	
+
+	view.add(startStopButton);
+	view.add(pauseResumeButton);
 	view.add(coverFlowView);
 
 	win.add(view);

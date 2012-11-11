@@ -26,52 +26,6 @@ function CoverFlow() {
 	});
 	coverView.add(view);
 
-	// change button to dynamically change the image
-	var change = Titanium.UI.createButton({
-		title : 'Change Image',
-		style : Titanium.UI.iPhone.SystemButtonStyle.BORDERED,
-		top : 300,
-		left : 200
-	});
-
-	change.addEventListener('click', function() {
-		Titanium.API.info("selected is = " + view.selected);
-		view.setImage(view.selected, '/images/imageview/28.jpg');
-	});
-
-	// move scroll view left
-	var left = Titanium.UI.createButton({
-		image : '/images/icon_arrow_left.png',
-		top : 300,
-		left : 120
-	});
-	left.addEventListener('click', function(e) {
-		var i = view.selected - 1;
-		if (i < 0) {
-			i = 0;
-		}
-		view.selected = i;
-	});
-
-	// move scroll view right
-	var right = Titanium.UI.createButton({
-		image : '/images/icon_arrow_right.png',
-		top : 300,
-		left : 240
-	});
-
-	right.addEventListener('click', function(e) {
-		var i = view.selected + 1;
-		if (i >= images.length) {
-			i = images.length - 1;
-		}
-		view.selected = i;
-	});
-
-	coverView.add(left);
-	coverView.add(change);
-	coverView.add(right);
-
 	return coverView;
 };
 

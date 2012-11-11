@@ -177,7 +177,7 @@ function TourSearchWindow(_args) {
 	var setDataToTourSearchTableView = function(tourSearchData) {
 		tourSearchTableView.data = tourSearchData;
 		var tourRow = Titanium.UI.createTableViewRow({
-			title : 'GA Tech'
+			title : 'Little Five Points'
 		});
 		tourSearchTableView.appendRow(tourRow);
 	}
