@@ -99,7 +99,7 @@ function TourContentWindow(userDetails) {
 
 	win.addEventListener('swipe', function() {
 		var TourStop = require('ui/Stop');
-		var stopWindow = new TourStop(nav);
+		var stopWindow = new TourStop(nav,1);
 		nav.add(stopWindow);
 		//nav.close(win,{animate:true});
 		nav.open(stopWindow, {
