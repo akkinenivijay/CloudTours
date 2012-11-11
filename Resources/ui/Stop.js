@@ -1,7 +1,7 @@
 function TourStop(navigationController, index) {
 
 	var backButton = Titanium.UI.createButton({
-		title : 'Overview'
+		title : (index === 1 ) ? 'Overview' : 'Stop ' + index - 1
 	});
 
 	var win = Ti.UI.createWindow({
@@ -36,22 +36,8 @@ function TourStop(navigationController, index) {
 		borderColor : 'transparent'
 	});
 
-	var activeMovie = Titanium.Media.createVideoPlayer({
-		url : '/video/stop' + index + '/movie.mp4',
-		backgroundColor : '#111',
-		mediaControlStyle : Titanium.Media.VIDEO_CONTROL_EMBEDDED, // See TIMOB-2802, which may change this property name
-		width : 100,
-		height : 80,
-		zIndex : 100,
-		left : 180,
-		top : 20,
-		autoplay : false
-	});
-
-	view.add(activeMovie);
-
 	var sound = Titanium.Media.createSound();
-	sound.url = '/audio/stop' + index + '/audio.mp3';
+	sound.url = '/audio/stop' + index + '/audio.mov';
 
 	startStopButton.addEventListener('click', function() {
 
@@ -87,7 +73,6 @@ function TourStop(navigationController, index) {
 	});
 
 	backButton.addEventListener('click', function() {
-		activeMovie.stop();
 		sound.stop();
 		if (Ti.Platform.osname === 'android') {
 			sound.release();
@@ -105,19 +90,14 @@ function TourStop(navigationController, index) {
 	win.add(view);
 
 	win.addEventListener('swipe', function() {
-		activeMovie.stop();
 		sound.stop();
 		if (Ti.Platform.osname === 'android') {
 			sound.release();
 		}
 		var TourStop = require('ui/Stop');
 		var stopWindow = new TourStop(navigationController, index + 1);
-		navigationController.add(stopWindow, {
-			animate : true
-		});
-		navigationController.open(stopWindow, {
-			animate : true
-		});
+		navigationController.add(stopWindow);
+		navigationController.open(stopWindow);
 	});
 
 	return win;

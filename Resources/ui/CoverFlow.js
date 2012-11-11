@@ -15,15 +15,6 @@ function CoverFlow(index) {
 		backgroundColor : '#000'
 	});
 
-	// click listener - when image is clicked
-	view.addEventListener('click', function(e) {
-		Titanium.API.info("image clicked: " + e.index + ', selected is ' + view.selected);
-	});
-
-	// change listener when active image changes
-	view.addEventListener('change', function(e) {
-		Titanium.API.info("image changed: " + e.index + ', selected is ' + view.selected);
-	});
 	coverView.add(view);
 
 	return coverView;
