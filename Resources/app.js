@@ -23,6 +23,8 @@ var tab2 = Titanium.UI.createTab({
 	window : win2
 });
 
+var userDetails;
+
 var logoutWindow = new LogoutWindow();
 
 var scrollWindow = new ScrollableView();
@@ -59,10 +61,13 @@ Ti.Facebook.addEventListener('logout', function(e) {
 if (Ti.Facebook.loggedIn) {
 	Ti.Facebook.requestWithGraphPath('me', {}, 'GET', function(e) {
 		if (e.success) {
+
+			userDetails = JSON.parse(e.result);
+
 			var TourSearchWindow = require('ui/TourSearchWindow');
 			var TourSearchWindow = new TourSearchWindow({
 				tabGroup : _tabGroup,
-				user : e.result
+				user : userDetails
 			});
 			_tabGroup.open();
 		} else if (e.error) {
@@ -80,7 +85,16 @@ Ti.App.addEventListener('navigateToTourPresentation', function(e) {
 
 	Ti.API.info(Titanium.Facebook.uid);
 
+	var MyClass = require('ui/MyClass');
+	var test = new MyClass();
+	Ti.API.info(test.publicInstanceMember);
+
 	var TourContentWindow = require('ui/TourContentWindow');
-	root = new TourContentWindow();
+	var root = new TourContentWindow(userDetails);
+	Ti.API.info(TourContentWindow.publicStaticMember);
+	TourContentWindow.publicStaticMethod();
+	Ti.API.info('Hellooooooooooo');
+	Ti.API.info('Hellooooooooooo2');
 	root.open();
+
 });

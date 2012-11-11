@@ -57,7 +57,7 @@
 	<string>UIStatusBarStyleDefault</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>/fonts/BaroqueStyle.ttf</string>
+		<string>/fonts/BaroqueScript.ttf</string>
 	</array>
 </dict>
 </plist>
