@@ -12,7 +12,7 @@ var _tabGroup = Titanium.UI.createTabGroup();
 
 var tab1 = Titanium.UI.createTab({
 	icon : 'KS_nav_views.png',
-	title : 'User Details'
+	title : 'Tour Search'
 });
 
 var win2 = new MapWindow();
@@ -59,8 +59,8 @@ Ti.Facebook.addEventListener('logout', function(e) {
 if (Ti.Facebook.loggedIn) {
 	Ti.Facebook.requestWithGraphPath('me', {}, 'GET', function(e) {
 		if (e.success) {
-			var UserDetailsWindow = require('ui/UserDetailsWindow');
-			var userDetailsWindow = new UserDetailsWindow({
+			var TourSearchWindow = require('ui/TourSearchWindow');
+			var TourSearchWindow = new TourSearchWindow({
 				tabGroup : _tabGroup,
 				user : e.result
 			});
