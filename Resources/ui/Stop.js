@@ -96,7 +96,7 @@ function TourStop(navigationController, index) {
 	});
 
 	var CoverFlow = require('ui/CoverFlow');
-	var coverFlowView = new CoverFlow();
+	var coverFlowView = new CoverFlow(index);
 
 	view.add(startStopButton);
 	view.add(pauseResumeButton);

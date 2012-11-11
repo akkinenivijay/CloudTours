@@ -1,4 +1,4 @@
-function CoverFlow() {
+function CoverFlow(index) {
 
 	var coverView = Ti.UI.createView({
 
@@ -6,7 +6,7 @@ function CoverFlow() {
 
 	var images = [];
 	for (var c = 0; c < 4; c++) {
-		images[c] = '/coverflow/stop1/IMG_191' + c + '.jpg';
+		images[c] = '/coverflow/stop' + index + '/IMG_191' + c + '.jpg';
 	}
 
 	// create coverflow view with images
