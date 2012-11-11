@@ -130,10 +130,10 @@ function TourStop(navigationController) {
 		activeMovie.stop();
 		var TourStop = require('ui/Stop');
 		var stopWindow = new TourStop(navigationController);
-		nav.add(stopWindow, {
+		navigationController.add(stopWindow, {
 			animate : true
 		});
-		nav.open(stopWindow, {
+		navigationController.open(stopWindow, {
 			animate : true
 		});
 	});
