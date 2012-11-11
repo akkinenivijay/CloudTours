@@ -19,7 +19,7 @@ var win2 = new MapWindow();
 
 var tab2 = Titanium.UI.createTab({
 	icon : 'KS_nav_ui.png',
-	title : 'Map',
+	title : 'Tour Info ',
 	window : win2
 });
 
@@ -75,3 +75,12 @@ if (Ti.Facebook.loggedIn) {
 } else {
 	facebookLoginWindow.open();
 }
+
+Ti.App.addEventListener('navigateToTourPresentation', function(e) {
+
+	Ti.API.info(Titanium.Facebook.uid);
+
+	var TourContentWindow = require('ui/TourContentWindow');
+	root = new TourContentWindow();
+	root.open();
+});

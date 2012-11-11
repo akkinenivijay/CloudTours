@@ -1,11 +1,24 @@
 function TourSearchWindow(_args) {
 
+	var resize_image = function(imagePath, height, width) {
+		height = height || 64;
+		width = width || 64;
+
+		var imageView = Ti.UI.createImageView({
+			image : imagePath,
+			width : width,
+			height : height
+		});
+
+		return imageView.toImage();
+	};
+
 	var _ = require('underscore')._;
 
 	var flipButton = Titanium.UI.createButton({
 		top : 5,
 		left : 285,
-		image : 'icons/flip_icon.png',
+		image : 'icons/flip_icon2.png',
 		zIndex : 100
 	});
 
@@ -169,15 +182,27 @@ function TourSearchWindow(_args) {
 		tourSearchTableView.appendRow(tourRow);
 	}
 	var addAnnotationsToMapView = function(tourSearchData) {
+
 		var gaTechAnnotation = Titanium.Map.createAnnotation({
+			image : 'icons/map_pin.png',
+			leftButton : 'images/gatech.jpg',
 			latitude : 33.778463,
 			longitude : -84.408881,
-			title : "Georgia Tech",
+			title : "Georgia Tech Tour",
 			subtitle : 'Atlanta, GA',
 			pincolor : Titanium.Map.ANNOTATION_GREEN,
 			animate : true,
 			myid : 1 // CUSTOM ATTRIBUTE THAT IS PASSED INTO EVENT OBJECTS
 		});
+
+		gaTechAnnotation.addEventListener('click', function(e) {
+			Ti.App.fireEvent('navigateToTourPresentation', {
+				tourData : {
+					tourId : '1234567890'
+				}
+			});
+		});
+
 		mapview.removeAllAnnotations();
 		mapview.addAnnotation(gaTechAnnotation);
 	}
