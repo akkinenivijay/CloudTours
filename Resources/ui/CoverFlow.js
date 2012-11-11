@@ -43,7 +43,7 @@ function CoverFlow() {
 	var left = Titanium.UI.createButton({
 		image : '/images/icon_arrow_left.png',
 		top : 300,
-		left : 180
+		left : 120
 	});
 	left.addEventListener('click', function(e) {
 		var i = view.selected - 1;
@@ -57,7 +57,7 @@ function CoverFlow() {
 	var right = Titanium.UI.createButton({
 		image : '/images/icon_arrow_right.png',
 		top : 300,
-		left : 160
+		left : 240
 	});
 
 	right.addEventListener('click', function(e) {
